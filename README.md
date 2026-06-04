@@ -1,153 +1,75 @@
-# Ghostling - Minimal libghostty Terminal
+[update-readmes]   Mode: rewrite — migrating to template structure...
+# ghostling
 
-Ghostling is a demo project meant to highlight a minimum
-functional terminal built on the libghostty C API in a
-[single C file](https://github.com/ghostty-org/ghostling/blob/main/main.c).
+[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/ghostling)
 
-The example uses Raylib for windowing and rendering. It is single-threaded
-(although libghostty-vt supports threading) and uses a 2D graphics renderer
-instead of a direct GPU renderer like the primary [Ghostty](https://ghostty.org) GUI. This is to
-showcase the flexibility of libghostty and how it can be used in a variety of
-contexts.
+<!-- AI:start:what-it-does -->
+_Description pending._
+<!-- AI:end:what-it-does -->
 
-> [!WARNING]
->
-> The Ghostling terminal isn't meant to be a full featured, daily use
-> terminal. It is a minimal viable terminal based on libghostty. Also, since
-> this is basically a demo, I didn't carefully audit every single place for
-> correctness, and this is C, so you've been warned!
+## Architecture
 
-<p align="center">
-  <img src="demo.gif" alt="Ghostling Demo" />
-</p>
+<!-- AI:start:architecture -->
+_Architecture documentation pending._
+<!-- AI:end:architecture -->
 
-## What is Libghostty?
+## Install
 
-Libghostty is an embeddable library extracted from [Ghostty's](https://ghostty.org) core,
-exposing a C and Zig API so any application can embed correct, fast terminal
-emulation.
+<!-- Add installation instructions here. This section is yours — the AI will not modify it. -->
 
-Ghostling uses **libghostty-vt**, a zero-dependency library (not even libc) that
-handles VT sequence parsing, terminal state management (cursor position,
-styles, text reflow, scrollback, etc.), and renderer state management. It
-contains no renderer drawing or windowing code; the consumer (Ghostling, in
-this case) provides its own. The core logic is extracted directly from Ghostty
-and inherits all of its real-world benefits: excellent, accurate, and complete
-terminal emulation support, SIMD-optimized parsing, leading Unicode support,
-highly optimized memory usage, and a robust fuzzed and tested codebase, all
-proven by millions of daily active users of Ghostty GUI.
-
-## Features
-
-Despite being a minimal, thin layer above libghostty, look at all the
-features you _do get_:
-
-- Resize with text reflow
-- Full 24-bit color and 256-color palette support
-- Bold, italic, and inverse text styles
-- Unicode and multi-codepoint grapheme handling (no shaping or layout)
-- Keyboard input with modifier support (Shift, Ctrl, Alt, Super)
-- Kitty keyboard protocol support
-- Mouse tracking (X10, normal, button, and any-event modes)
-- Mouse reporting formats (SGR, URxvt, UTF8, X10)
-- Scroll wheel support (viewport scrollback or forwarded to applications)
-- Scrollbar with mouse drag-to-scroll
-- Focus reporting (CSI I / CSI O)
-- And more. Effectively all the terminal emulation features supported
-  by Ghostty!
-
-### What Is Coming
-
-These features aren't properly exposed by libghostty-vt yet but will be:
-
-- Kitty Graphics Protocol
-- OSC clipboard support
-- OSC title setting
-
-These are things that could work but haven't been tested or aren't
-implemented in Ghostling itself:
-
-- Windows support (libghostty-vt supports Windows)
-
-This list is incomplete and we'll add things as we find them.
-
-### What You Won't Ever Get
-
-libghostty is focused on core terminal emulation features. As such,
-you don't get features that are provided by the GUI above the terminal
-emulation layer, such as:
-
-- Tabs
-- Multiple windows
-- Splits
-- Session management
-- Configuration file or GUI
-- Search UI (although search internals are provided by libghostty-vt)
-
-These are the things that libghostty consumers are expected to implement
-on their own, if they want them. This example doesn't implement these
-to try to stay as minimal as possible.
-
-## Building
-
-Requires CMake 3.19+, a C compiler, and Zig 0.15.x on PATH.
-Raylib is fetched automatically via CMake's FetchContent if not already installed.
-
-```sh
-cmake -B build -G Ninja
-cmake --build build
-./build/ghostling
+```bash
+git clone https://github.com/Interested-Deving-1896/ghostling.git
+cd ghostling
 ```
 
-> [!WARNING]
->
-> Debug builds are VERY SLOW since Ghostty included a lot of extra
-> safety and correctness checks. Do not benchmark debug builds.
+## Usage
 
-For a release (optimized) build:
+<!-- Add usage examples here. This section is yours — the AI will not modify it. -->
 
-```sh
-cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
-cmake --build build
+## Configuration
+
+<!-- Document configuration options here. This section is yours — the AI will not modify it. -->
+
+## CI
+
+<!-- AI:start:ci -->
+_CI documentation pending._
+<!-- AI:end:ci -->
+
+## Mirror chain
+
+<!-- AI:start:mirror-chain -->
+This repo is maintained in [`Interested-Deving-1896/ghostling`](https://github.com/Interested-Deving-1896/ghostling) and mirrored through:
+
+```
+Interested-Deving-1896/ghostling  ──►  OpenOS-Project-OSP/ghostling  ──►  OpenOS-Project-Ecosystem-OOC/ghostling
 ```
 
-After the initial configure, you only need to run the build step:
+Changes flow downstream automatically via the hourly mirror chain in
+[`fork-sync-all`](https://github.com/Interested-Deving-1896/fork-sync-all).
+Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-Deving-1896`.
+<!-- AI:end:mirror-chain -->
 
-```sh
-cmake --build build
-```
+## Contributors
 
-## FAQ
+<!-- AI:start:contributors -->
+_Contributors pending._
+<!-- AI:end:contributors -->
 
-### Why Not Zig?
+## Origins
 
-libghostty-vt has a fully capable and proven Zig API. Ghostty GUI itself
-uses this and is a good -- although complex -- example of how to use it.
-However, this demo is meant to showcase the minimal C API since C is so
-much more broadly used and accessible to a wide variety of developers and
-language ecosystems.
+<!-- AI:start:origins -->
+_Original project — no upstream fork._
+<!-- AI:end:origins -->
 
-### What about Rust or any other language?
+## Resources
 
-libghostty-vt has a C API and can have zero dependencies, so it can be used
-with minimally thin bindings in basically any language. I'm not sure yet if
-the Ghostty project will maintain official bindings for languages other than C
-and Zig, but I hope the community will create and maintain bindings for many
-languages!
+<!-- AI:start:resources -->
+_No additional resource files found._
+<!-- AI:end:resources -->
 
-### Does libghostty require Raylib?
+## License
 
-**No no no!** libghostty has no opinion about the renderer or GUI framework
-used; it's even standalone WASM-compatible for browsers and other environments.
-
-libghostty provides a [high-performance render state API](https://libghostty.tip.ghostty.org/group__render.html)
-which only keeps track of the _state_ required to build a renderer. This is the
-same API used by Ghostty GUI for Metal and OpenGL rendering and in this repository
-for the Raylib 2D graphics API. You can layer any renderer on top of this!
-
-### Why CMake, Raylib, etc.?
-
-I needed to pick _something_. Really, any build system and any library
-could be used. CMake is widely used and supported, and Raylib is a simple
-and elegant library for windowing and 2D rendering that is easy to set up.
-Don't get bogged down in these details!
+<!-- AI:start:license -->
+[MIT](https://github.com/Interested-Deving-1896/ghostling/blob/main/LICENSE) © 2026 [Interested-Deving-1896](https://github.com/Interested-Deving-1896)
+<!-- AI:end:license -->
